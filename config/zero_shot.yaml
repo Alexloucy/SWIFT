@@ -1,0 +1,23 @@
+DATALOADER:
+  TEST:
+    BATCH_SIZE: 64
+  NUM_WORKERS: 8
+
+INPUT:
+  SIZE: (256, 256)
+  INTERPOLATION: "bicubic"
+  PIXEL_MEAN: [0.485, 0.456, 0.406]
+  PIXEL_STD: [0.229, 0.224, 0.225]
+  TRANSFORMS: ["normalize"]
+
+MODEL:
+  NAME: ZeroShot
+  ZeroShot:
+    # REQUIRED: path to the downloaded DINOv3 checkpoint.
+    WEIGHT_PATH: "REQUIRED_PATH_TO_DINOV3_WEIGHTS"
+    BACKBONE: "dinov3_vith16plus"
+    # REQUIRED: path to the local DINOv3 torch.hub repository.
+    REPO: "REQUIRED_PATH_TO_DINOV3_REPO"
+
+TEST:
+  EVALUATOR: "R1_mAP"
